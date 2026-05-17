@@ -113,25 +113,27 @@ def train_logistic_regression(X_train_vec, y_train):
 
 def train_passive_aggressive(X_train_vec, y_train):
     """
-    Passive Aggressive Classifier — designed for text streams.
-    
-    Why: Updates only on mistakes (passive on correct, aggressive on wrong).
-    Excellent for large text datasets, very fast training.
+    SGDClassifier with PA settings — replaces deprecated PassiveAggressiveClassifier.
+    Recommended by sklearn 1.8+ as the modern equivalent.
     """
-    logger.info("Training Passive Aggressive Classifier...")
+    logger.info("Training SGDClassifier (PA equivalent)...")
 
-    model = PassiveAggressiveClassifier(
-        C=0.5,              # aggressiveness — lower = more conservative
+    from sklearn.linear_model import SGDClassifier
+
+    model = SGDClassifier(
+        loss="hinge",
+        penalty=None,
+        learning_rate="pa1",
+        eta0=1.0,
         max_iter=1000,
         random_state=42
     )
     model.fit(X_train_vec, y_train)
 
     joblib.dump(model, f"{MODELS_DIR}/passive_aggressive.pkl")
-    logger.info("✅ Passive Aggressive saved")
+    logger.info("✅ SGDClassifier (PA) saved")
 
     return model
-
 
 def train_random_forest(X_train_vec, y_train):
     """
