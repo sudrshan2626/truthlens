@@ -52,3 +52,8 @@ frontend/dist/
 # Logs
 *.log
 logs/
+
+# Dataset files (too large for GitHub)
+backend/data/raw/
+backend/data/processed/
+backend/data/charts/
