@@ -27,8 +27,8 @@ def create_app() -> FastAPI:
     #Allows the React frontend to call this backend
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[settings.frontend_url],
-        allow_credentials=True,
+        allow_origins=["*"],          # Allow all in production
+        allow_credentials=False,      # Must be False when allow_origins=["*"]
         allow_methods=["*"],
         allow_headers=["*"],
     )

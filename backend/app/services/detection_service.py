@@ -31,10 +31,22 @@ class DetectionService:
 
     @property
     def predictor(self):
-        """Lazy-loads ML models on first request."""
+        """
+        Loads correct predictor based on environment.
+        - Production (Render): uses lightweight prod_predictor
+        - Development (local): uses full predictor with all 4 models
+        """
         if self._predictor is None:
-            from ml.predictor import get_predictor
-            self._predictor = get_predictor()
+            import os
+            env = os.getenv("ENVIRONMENT", "development")
+
+            if env == "production":
+                from ml.prod_predictor import get_production_predictor
+                self._predictor = get_production_predictor()
+            else:
+                from ml.predictor import get_predictor
+                self._predictor = get_predictor()
+
         return self._predictor
 
     @property
