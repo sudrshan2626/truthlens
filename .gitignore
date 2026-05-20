@@ -19,12 +19,15 @@ env/
 .env.production
 
 # ML Model files (too large for GitHub)
-*.pkl
-*.h5
-*.pt
-*.pth
-*.bin
+# ML Model files (too large for GitHub)
 backend/ml/trained_models/
+backend/data/raw/
+backend/data/processed/
+backend/data/charts/
+
+# Allow production models (only 1.3MB - safe for GitHub)
+!backend/ml/prod_models/
+!backend/ml/prod_models/*.pkl
 
 # FAISS index files
 *.faiss
