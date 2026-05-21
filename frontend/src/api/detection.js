@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+const BASE_URL = import.meta.env.VITE_API_URL || ''
+
 const api = axios.create({
-  baseURL: '/',
+  baseURL: BASE_URL,
   headers: { 'Content-Type': 'application/json' },
   timeout: 60000,
 })
@@ -11,7 +13,6 @@ export const analyzeText = async (text) => {
   return response.data
 }
 
-// NEW
 export const analyzeURL = async (url) => {
   const response = await api.post('/api/detect-url', { url })
   return response.data
