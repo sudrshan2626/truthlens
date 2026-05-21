@@ -1,0 +1,24 @@
+# Web framework
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Settings & validation
+pydantic
+pydantic-settings
+python-dotenv
+
+# ML (classical models only — no PyTorch needed in production)
+scikit-learn
+joblib
+numpy
+pandas
+
+# LangChain + Gemini
+langchain-core
+langchain-google-genai
+google-generativeai
+
+# Article URL scraping
+newspaper3k
+lxml_html_clean
